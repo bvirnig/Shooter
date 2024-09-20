@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dqjudxpnsyvnw"]
+[gd_scene load_steps=29 format=3 uid="uid://dqjudxpnsyvnw"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_tnaw1"]
 [ext_resource type="Texture2D" uid="uid://cch74frjxihh5" path="res://assets/player/E/player_E_0.png" id="1_uf6pq"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://cc8njfca4kqub" path="res://assets/player/NE/player_NE_0.png" id="23_t8xq3"]
 [ext_resource type="Texture2D" uid="uid://b31weigfh46eg" path="res://assets/player/NE/player_NE_1.png" id="24_wtrxs"]
 [ext_resource type="Texture2D" uid="uid://fb7lhnp8wvnt" path="res://assets/player/NE/player_NE_2.png" id="25_gai3q"]
+[ext_resource type="PackedScene" uid="uid://wiks2odakt4p" path="res://ray_cast_2d.tscn" id="26_jrquk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ep3ng"]
 animations = [{
@@ -193,6 +194,18 @@ one_shot = true
 wait_time = 4.0
 one_shot = true
 
+[node name="RayCast2D" parent="." instance=ExtResource("26_jrquk")]
+visible = false
+position = Vector2(23, 4)
+enabled = false
+collision_mask = 4
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="BoostTimer" to="." method="_on_boost_timer_timeout"]
 [connection signal="timeout" from="FastFireTimer" to="." method="_on_fast_fire_timer_timeout"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]

@@ -12,7 +12,7 @@ var alive : bool
 var entered : bool
 var speed : int = 100
 var direction : Vector2
-const DROP_CHANCE : float = 0.1
+const DROP_CHANCE : float = 1
 
 func _ready():
 	var screen_rect = get_viewport_rect()
